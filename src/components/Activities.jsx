@@ -12,12 +12,12 @@ export default function Activities() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           
           {/* Act 1 */}
-          <div style={{ 
+          <div className="act-card" style={{ 
             display: 'flex', gap: '16px', alignItems: 'flex-start',
             padding: '24px', borderRadius: '12px', border: '1px solid var(--border)',
             background: 'var(--bg-subtle)'
           }}>
-            <div style={{ 
+            <div className="act-icon" style={{ 
               width: '40px', height: '40px', borderRadius: '8px', 
               background: 'var(--btn-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', 
               color: 'var(--btn-text)', flexShrink: 0 
@@ -31,12 +31,12 @@ export default function Activities() {
           </div>
 
           {/* Act 2 */}
-          <div style={{ 
+          <div className="act-card" style={{ 
             display: 'flex', gap: '16px', alignItems: 'flex-start',
             padding: '24px', borderRadius: '12px', border: '1px solid var(--border)',
             background: 'var(--bg-subtle)'
           }}>
-            <div style={{ 
+            <div className="act-icon" style={{ 
               width: '40px', height: '40px', borderRadius: '8px', 
               background: 'var(--btn-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', 
               color: 'var(--btn-text)', flexShrink: 0 

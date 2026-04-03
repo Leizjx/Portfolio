@@ -225,18 +225,96 @@ body::before {
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+
+  .nav-menu-desktop {
+    display: none !important;
+  }
+
+  .project-card {
+    border-radius: 12px;
+  }
+
+  .project-card > div:last-child {
+    padding: 20px !important;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .skills-category-title {
+    padding-top: 0 !important;
+    margin-bottom: -4px;
+    font-size: 13px !important;
+  }
+
+  .about-block, .act-card {
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+
+  .about-icon, .act-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .about-icon svg, .act-icon svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+
   .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
     text-align: left;
+    padding-top: 20px;
   }
   
   .hero-image-container {
-    grid-row: 1; /* Moves photo to top on mobile */
-    max-width: 320px;
+    grid-row: 1 !important; /* Moves photo to top on mobile */
+    max-width: 320px !important;
   }
 
   .hero-icons {
-    display: none; /* Hide floating icons on small screens */
+    display: none !important; /* Hide floating icons on small screens */
+  }
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 99;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
   }
 }
