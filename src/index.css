@@ -237,6 +237,10 @@ body::before {
     display: none !important;
   }
 
+  .nav-controls-desktop {
+    display: none !important;
+  }
+
   .project-card {
     border-radius: 12px;
   }

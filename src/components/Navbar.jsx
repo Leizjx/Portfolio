@@ -90,8 +90,9 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            {/* Language toggle - visible on desktop, hidden on tiny mobile if needed, but we keep it small */}
+          {/* Controls: only FULLY visible on desktop */}
+          <div className="nav-controls-desktop" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {/* Language toggle */}
             <div style={{ display: 'flex', borderRadius: '6px', border: '1px solid var(--border)', overflow: 'hidden' }}>
               {['en', 'vi'].map(code => (
                 <button
@@ -131,37 +132,84 @@ export default function Navbar() {
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
               )}
             </button>
-
-            {/* Hamburger Button for Mobile */}
-            <button 
-              className="hamburger-btn" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle Menu"
-            >
-              {isMenuOpen ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-              )}
-            </button>
           </div>
+
+          {/* Hamburger Button — only visible on mobile */}
+          <button 
+            className="hamburger-btn" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown — contains all nav links + lang + theme */}
       {isMenuOpen && (
         <div className="mobile-menu">
+          {/* Nav Links */}
           {navLinks.map(link => (
             <a 
               key={link.href} 
               href={link.href} 
               className="nav-link" 
-              style={{ fontSize: '16px', padding: '12px' }}
+              style={{ fontSize: '16px', padding: '12px 16px', borderRadius: '8px' }}
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {t(link.label)}
             </a>
           ))}
+
+          {/* Divider */}
+          <div style={{ height: '1px', background: 'var(--border)', margin: '8px 0' }} />
+
+          {/* Language + Theme row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 16px' }}>
+            <span style={{ fontSize: '13px', color: 'var(--text-faint)', flex: 1 }}>Ngôn ngữ / Language</span>
+            <div style={{ display: 'flex', borderRadius: '6px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+              {['en', 'vi'].map(code => (
+                <button
+                  key={code}
+                  onClick={() => { setLang(code) }}
+                  style={{
+                    padding: '6px 14px',
+                    fontSize: '13px',
+                    fontWeight: lang === code ? 600 : 400,
+                    color: lang === code ? 'var(--text)' : 'var(--text-faint)',
+                    background: lang === code ? 'var(--bg)' : 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {code.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={toggleTheme}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '36px', height: '36px',
+                borderRadius: '8px', border: '1px solid var(--border)',
+                background: 'var(--bg)', color: 'var(--text)',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              )}
+            </button>
+          </div>
         </div>
       )}
     </header>
