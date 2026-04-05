@@ -5,6 +5,7 @@ import { ScrollReveal } from '../lib/motion'
 const skillGroups = [
   { key: 'skills_frontend', skills: ['React', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Tailwind CSS'] },
   { key: 'skills_backend',  skills: ['Node.js', 'Express.js', 'NestJS', 'REST APIs', 'JWT'] },
+  { key: 'skills_database', skills: ['MySQL', 'SQL Server', 'MongoDB'] },
   { key: 'skills_tools',    skills: ['Git', 'GitHub', 'Figma', 'VS Code'] },
 ]
 
